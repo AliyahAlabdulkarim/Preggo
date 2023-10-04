@@ -73,7 +73,6 @@ class _viewAppointment extends State<viewAppointment> {
     super.initState();
     // _googleSignIn.onCurrentUserChanged
     //     .listen((GoogleSignInAccount? account) {});
-
     print("START OF PAGE");
     print(_googleSignIn.currentUser);
   }
@@ -84,9 +83,12 @@ class _viewAppointment extends State<viewAppointment> {
   // }
 
   getAppointments() async {
+    print('in get appts');
     // _googleSignIn.signOut();
-    await _googleSignIn.signInSilently();
-
+    print("AA first: " + (await _googleSignIn.isSignedIn()).toString());
+    // await _googleSignIn.signOut();
+    await _googleSignIn.signIn();
+    print("AA second: " + (await _googleSignIn.isSignedIn()).toString());
     // _googleSignIn
     //     .signOut(); //this line will make it ask for your account every time
     // _googleSignIn.signIn();

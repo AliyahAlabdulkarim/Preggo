@@ -119,7 +119,7 @@ class _NavBar extends State<NavBar> {
                       );
 
                       //await _googleSignIn.signOut();
-                      await _googleSignIn.signIn();
+                      // await _googleSignIn.signIn();
 
                       setState(() {
                         currentScreen = viewAppointment();
