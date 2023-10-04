@@ -118,24 +118,36 @@ class _NavBar extends State<NavBar> {
                         scopes: _scopes,
                       );
 
-                      Future<void> _handleSignIn() async {
-                        try {
-                          await _googleSignIn.signIn();
-                        } catch (error) {
-                          print(error);
-                        }
-                      }
+                      //await _googleSignIn.signOut();
+                      await _googleSignIn.signIn();
 
-                      _googleSignIn.signOut();
-
-                      await _handleSignIn();
                       setState(() {
                         currentScreen = viewAppointment();
                         currentTab = 1;
                         print('HELLOHELLO');
-                        print(_googleSignIn.currentUser);
+                        // print(_googleSignIn.currentUser);
                       });
                     },
+                    // onPressed: () async {
+
+                    //   Future<void> _handleSignIn() async {
+                    //     try {
+                    //       await _googleSignIn.signIn();
+                    //     } catch (error) {
+                    //       print(error);
+                    //     }
+                    //   }
+
+                    //   _googleSignIn.signOut();
+
+                    //   await _handleSignIn();
+                    //   setState(() {
+                    //     currentScreen = viewAppointment();
+                    //     currentTab = 1;
+                    //     print('HELLOHELLO');
+                    //     print(_googleSignIn.currentUser);
+                    //   });
+                    // },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

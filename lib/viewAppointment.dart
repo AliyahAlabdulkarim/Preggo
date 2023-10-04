@@ -84,6 +84,9 @@ class _viewAppointment extends State<viewAppointment> {
   // }
 
   getAppointments() async {
+    // _googleSignIn.signOut();
+    await _googleSignIn.signInSilently();
+
     // _googleSignIn
     //     .signOut(); //this line will make it ask for your account every time
     // _googleSignIn.signIn();
