@@ -54,6 +54,7 @@ dependencies:
   url_launcher: ^6.1.14
   google_sign_in: ^6.1.5
   extension_google_sign_in_as_googleapis_auth: ^2.0.11
+  syncfusion_flutter_calendar: ^23.1.38
   # google_sign_in: ^4.4.6
   # googleapis_auth: ^0.2.11+1
   # googleapis: ^0.54.0
