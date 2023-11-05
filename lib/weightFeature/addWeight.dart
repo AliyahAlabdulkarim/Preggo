@@ -472,25 +472,25 @@ class _fillWeightForm extends State<addWeight> {
                                             filled: true,
                                             fillColor: Color(0xFFF7F8F9),
                                           ),
-                                          autovalidateMode:
-                                          AutovalidateMode.onUserInteraction,
+                                          autovalidateMode: AutovalidateMode
+                                              .onUserInteraction,
                                           validator: (value) {
                                             if (value!.trim().isEmpty) {
                                               return "please enter your weight.";
                                             }
 
                                             if (!RegExp(r'^[0-9]+(\.[0-9]+)?$')
-                                                .hasMatch(value)) {
+                                                .hasMatch(value.trim())) {
                                               return "Please Enter numbers only.";
                                             }
 
                                             if (!RegExp(r'^\d+(\.\d{1})?$')
-                                                .hasMatch(value)) {
+                                                .hasMatch(value.trim())) {
                                               return "Please Enter weight with one decimal place only.";
                                             }
                                             if (!RegExp(
                                                     r'^(?:2[0-4][0-9]|2[5-9]|[3-9][0-9]|1[0-9]{2}|25[0-9]|2[6-9][0-9]|300|200|250)(?:\.\d+)?$')
-                                                .hasMatch(value)) {
+                                                .hasMatch(value.trim())) {
                                               return "Please Enter weight between 25 and 300";
                                             }
                                           },
