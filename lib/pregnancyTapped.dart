@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_print, camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:preggo/NavBar.dart';
 import 'package:preggo/viewAppointment.dart';
 import 'package:preggo/view_reminders.dart';
 import 'package:preggo/weightFeature/view_delete_Weight.dart';
@@ -56,7 +57,7 @@ class _pregnancyTapped extends State<pregnancyTapped> {
               children: [
                 Container(
                   margin: EdgeInsets.only(bottom: 10),
-                  width: 330,
+                  width: 310,
                   height: 150,
                   //baby info
                   decoration: BoxDecoration(
@@ -73,8 +74,8 @@ class _pregnancyTapped extends State<pregnancyTapped> {
                     //crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Image.asset(
-                        "assets/images/schedule.png",
-                        height: 130,
+                        "assets/images/babydetails.png",
+                        height: 100,
                       ),
                       RichText(
                         text: const TextSpan(
@@ -83,7 +84,7 @@ class _pregnancyTapped extends State<pregnancyTapped> {
                           ),
                           children: <TextSpan>[
                             TextSpan(
-                                text: '   Baby\'s Information',
+                                text: '      Baby\'s Information',
                                 style: TextStyle(
                                     color: Color.fromARGB(255, 96, 95, 95),
                                     fontSize: 18,
@@ -96,7 +97,8 @@ class _pregnancyTapped extends State<pregnancyTapped> {
                 ),
                 Container(
                   margin: EdgeInsets.only(bottom: 10),
-                  width: 330,
+                  padding: EdgeInsets.only(left: 10),
+                  width: 310,
                   height: 150,
                   //weight
                   decoration: BoxDecoration(
@@ -114,7 +116,7 @@ class _pregnancyTapped extends State<pregnancyTapped> {
                     children: [
                       Image.asset(
                         "assets/images/schedule.png",
-                        height: 130,
+                        height: 100,
                       ),
                       RichText(
                         text: const TextSpan(
@@ -123,7 +125,7 @@ class _pregnancyTapped extends State<pregnancyTapped> {
                           ),
                           children: <TextSpan>[
                             TextSpan(
-                                text: ' Appointments',
+                                text: '    Past Appointments',
                                 style: TextStyle(
                                     color: Color.fromARGB(255, 96, 95, 95),
                                     fontSize: 18,
@@ -135,7 +137,7 @@ class _pregnancyTapped extends State<pregnancyTapped> {
                   ),
                 ),
                 Container(
-                  width: 330,
+                  width: 310,
                   height: 150,
                   //appointments
                   decoration: BoxDecoration(
@@ -153,7 +155,7 @@ class _pregnancyTapped extends State<pregnancyTapped> {
                     children: [
                       Image.asset(
                         "assets/images/weight-scale.png",
-                        height: 150,
+                        height: 130,
                       ),
                       RichText(
                         text: const TextSpan(
