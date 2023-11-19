@@ -5,6 +5,9 @@ import 'package:preggo/NavBar.dart';
 import 'package:preggo/viewAppointment.dart';
 import 'package:preggo/view_reminders.dart';
 import 'package:preggo/weightFeature/view_delete_Weight.dart';
+import 'package:preggo/weight_history.dart';
+
+import 'appointmentHistory.dart';
 
 class pregnancyTapped extends StatefulWidget {
   const pregnancyTapped({super.key});
@@ -58,13 +61,6 @@ class _pregnancyTapped extends State<pregnancyTapped> {
                 GestureDetector(
                   onTap: () {
                     print("BABY ID IS $babyID");
-                    //  Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //       builder: (context) =>
-                    //      PAGENAME(),
-                    // ),
-                    //);
                   },
                   child: Container(
                     margin: EdgeInsets.only(bottom: 20),
@@ -110,13 +106,13 @@ class _pregnancyTapped extends State<pregnancyTapped> {
                 GestureDetector(
                   onTap: () {
                     print("BABY ID IS $babyID");
-                    //  Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //       builder: (context) =>
-                    //      PAGENAME(),
-                    // ),
-                    //);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => appointmentHistory(),
+                        settings: RouteSettings(arguments: babyID),
+                      ),
+                    );
                   },
                   child: Container(
                     margin: EdgeInsets.only(bottom: 20),
@@ -147,7 +143,7 @@ class _pregnancyTapped extends State<pregnancyTapped> {
                             ),
                             children: <TextSpan>[
                               TextSpan(
-                                  text: '    Past Appointments',
+                                  text: '  Appointment History',
                                   style: TextStyle(
                                       color: Color.fromARGB(255, 96, 95, 95),
                                       fontSize: 18,
@@ -162,13 +158,13 @@ class _pregnancyTapped extends State<pregnancyTapped> {
                 GestureDetector(
                   onTap: () {
                     print("BABY ID IS $babyID");
-                    //  Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //       builder: (context) =>
-                    //      PAGENAME(),
-                    // ),
-                    //);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => weightHistory(),
+                        settings: RouteSettings(arguments: babyID),
+                      ),
+                    );
                   },
                   child: Container(
                     width: 310,
@@ -197,7 +193,7 @@ class _pregnancyTapped extends State<pregnancyTapped> {
                             ),
                             children: <TextSpan>[
                               TextSpan(
-                                  text: '      Past Weight',
+                                  text: '    Weight History',
                                   style: TextStyle(
                                       color: Color.fromARGB(255, 96, 95, 95),
                                       fontSize: 18,
