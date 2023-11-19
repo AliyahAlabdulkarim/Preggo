@@ -55,124 +55,158 @@ class _pregnancyTapped extends State<pregnancyTapped> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  margin: EdgeInsets.only(bottom: 10),
-                  width: 310,
-                  height: 150,
-                  //baby info
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          const Color.fromARGB(255, 236, 194, 193),
-                          const Color.fromARGB(255, 251, 233, 234),
-                        ],
-                        begin: Alignment.bottomRight,
-                      ),
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    //crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Image.asset(
-                        "assets/images/babydetails.png",
-                        height: 100,
-                      ),
-                      RichText(
-                        text: const TextSpan(
-                          style: TextStyle(
-                            fontFamily: 'Urbanist',
-                          ),
-                          children: <TextSpan>[
-                            TextSpan(
-                                text: '      Baby\'s Information',
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 96, 95, 95),
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w700)),
+                GestureDetector(
+                  onTap: () {
+                    print("BABY ID IS $babyID");
+                    //  Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //       builder: (context) =>
+                    //      PAGENAME(),
+                    // ),
+                    //);
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(bottom: 20),
+                    padding: EdgeInsets.only(left: 5),
+                    width: 310,
+                    height: 150,
+                    //baby info
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            const Color.fromARGB(255, 236, 194, 193),
+                            const Color.fromARGB(255, 251, 233, 234),
                           ],
+                          begin: Alignment.bottomRight,
                         ),
-                      )
-                    ],
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Image.asset(
+                          "assets/images/babydetails.png",
+                          height: 100,
+                        ),
+                        RichText(
+                          text: const TextSpan(
+                            style: TextStyle(
+                              fontFamily: 'Urbanist',
+                            ),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: '     Baby\'s Information',
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 96, 95, 95),
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w700)),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(bottom: 10),
-                  padding: EdgeInsets.only(left: 10),
-                  width: 310,
-                  height: 150,
-                  //weight
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          const Color.fromARGB(255, 236, 194, 193),
-                          const Color.fromARGB(255, 251, 233, 234),
-                        ],
-                        begin: Alignment.bottomRight,
-                      ),
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    //crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Image.asset(
-                        "assets/images/schedule.png",
-                        height: 100,
-                      ),
-                      RichText(
-                        text: const TextSpan(
-                          style: TextStyle(
-                            fontFamily: 'Urbanist',
-                          ),
-                          children: <TextSpan>[
-                            TextSpan(
-                                text: '    Past Appointments',
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 96, 95, 95),
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w700)),
+                GestureDetector(
+                  onTap: () {
+                    print("BABY ID IS $babyID");
+                    //  Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //       builder: (context) =>
+                    //      PAGENAME(),
+                    // ),
+                    //);
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(bottom: 20),
+                    padding: EdgeInsets.only(left: 10),
+                    width: 310,
+                    height: 150,
+                    //weight
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            const Color.fromARGB(255, 236, 194, 193),
+                            const Color.fromARGB(255, 251, 233, 234),
                           ],
+                          begin: Alignment.bottomRight,
                         ),
-                      )
-                    ],
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Image.asset(
+                          "assets/images/schedule.png",
+                          height: 100,
+                        ),
+                        RichText(
+                          text: const TextSpan(
+                            style: TextStyle(
+                              fontFamily: 'Urbanist',
+                            ),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: '    Past Appointments',
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 96, 95, 95),
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w700)),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-                Container(
-                  width: 310,
-                  height: 150,
-                  //appointments
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          const Color.fromARGB(255, 236, 194, 193),
-                          const Color.fromARGB(255, 251, 233, 234),
-                        ],
-                        begin: Alignment.bottomRight,
-                      ),
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    //crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Image.asset(
-                        "assets/images/weight-scale.png",
-                        height: 130,
-                      ),
-                      RichText(
-                        text: const TextSpan(
-                          style: TextStyle(
-                            fontFamily: 'Urbanist',
-                          ),
-                          children: <TextSpan>[
-                            TextSpan(
-                                text: '      Past Weight',
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 96, 95, 95),
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w700)),
+                GestureDetector(
+                  onTap: () {
+                    print("BABY ID IS $babyID");
+                    //  Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //       builder: (context) =>
+                    //      PAGENAME(),
+                    // ),
+                    //);
+                  },
+                  child: Container(
+                    width: 310,
+                    height: 150,
+                    //appointments
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            const Color.fromARGB(255, 236, 194, 193),
+                            const Color.fromARGB(255, 251, 233, 234),
                           ],
+                          begin: Alignment.bottomRight,
                         ),
-                      )
-                    ],
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Image.asset(
+                          "assets/images/weight-scale.png",
+                          height: 130,
+                        ),
+                        RichText(
+                          text: const TextSpan(
+                            style: TextStyle(
+                              fontFamily: 'Urbanist',
+                            ),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: '      Past Weight',
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 96, 95, 95),
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w700)),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ],
