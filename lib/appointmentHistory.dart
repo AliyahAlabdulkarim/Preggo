@@ -52,18 +52,19 @@ class _appointmentHistory extends State<appointmentHistory> {
             ),
           ),
           Container(
-              //message
-              margin: EdgeInsets.fromLTRB(30, 35, 30, 80),
-              child: Text(
-                'No Appointment History',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 26,
-                  fontFamily: 'Urbanist',
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: -0.28,
-                ),
-              )),
+            //message
+            margin: EdgeInsets.fromLTRB(30, 35, 30, 80),
+            child: Text(
+              'No Appointment History',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 26,
+                fontFamily: 'Urbanist',
+                fontWeight: FontWeight.w600,
+                letterSpacing: -0.28,
+              ),
+            ),
+          ),
         ],
       );
     } else {
@@ -80,134 +81,139 @@ class _appointmentHistory extends State<appointmentHistory> {
         physics: AlwaysScrollableScrollPhysics(),
         scrollDirection: Axis.vertical,
         child: SizedBox(
-          height: 680,
+          height: 700,
           child: ListView.builder(
             shrinkWrap: true,
-            itemCount: appointments.length,
+            itemCount: appointments.length + 1,
             itemBuilder: (context, index) {
-              var date = DateFormat('MMMM dd, yyyy')
-                  .format(appointments[index].data()['start'].toDate())
-                  .toString();
-              var startTime = DateFormat('hh:mm a')
-                  .format(appointments[index].data()['start'].toDate())
-                  .toString();
-              var endTime = DateFormat('hh:mm a')
-                  .format(appointments[index].data()['end'].toDate())
-                  .toString();
-              String doctor = appointments[index].data()['dr'] ?? '';
-              String hospital = appointments[index].data()['hospital'] ?? '';
-              String title = appointments[index].data()['name'] ?? '';
+              if (index < appointments.length) {
+                var date = DateFormat('MMMM dd, yyyy')
+                    .format(appointments[index].data()['start'].toDate())
+                    .toString();
+                var startTime = DateFormat('hh:mm a')
+                    .format(appointments[index].data()['start'].toDate())
+                    .toString();
+                var endTime = DateFormat('hh:mm a')
+                    .format(appointments[index].data()['end'].toDate())
+                    .toString();
+                String doctor = appointments[index].data()['dr'] ?? '';
+                String hospital = appointments[index].data()['hospital'] ?? '';
+                String title = appointments[index].data()['name'] ?? '';
 
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 100,
-                    child: TimelineTile(
-                      axis: TimelineAxis.vertical,
-                      alignment: TimelineAlign.start,
-                      isFirst: index == 0,
-                      isLast: index == appointments.length - 1,
-                      indicatorStyle: IndicatorStyle(
-                        height: 20,
-                        width: 20,
-                        color: pinkColor,
-                      ),
-                      beforeLineStyle: LineStyle(
-                        color: pinkColor.withOpacity(0.6),
-                      ),
-                      endChild: Column(
-                        children: [
-                          SizedBox(
-                            height: 15,
-                          ),
-                          Container(
-                            margin: EdgeInsets.symmetric(horizontal: 12),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 10),
-                            decoration: BoxDecoration(
-                              //color: backGroundPink.withOpacity(0.3),
-                              border:
-                                  Border.all(color: backGroundPink, width: 2),
-                              borderRadius: BorderRadius.circular(13),
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 100,
+                      child: TimelineTile(
+                        axis: TimelineAxis.vertical,
+                        alignment: TimelineAlign.start,
+                        isFirst: index == 0,
+                        isLast: index == appointments.length - 1,
+                        indicatorStyle: IndicatorStyle(
+                          height: 20,
+                          width: 20,
+                          color: pinkColor,
+                        ),
+                        beforeLineStyle: LineStyle(
+                          color: pinkColor.withOpacity(0.6),
+                        ),
+                        endChild: Column(
+                          children: [
+                            SizedBox(
+                              height: 15,
                             ),
-                            child: Row(children: [
-                              Column(
-                                children: [
-                                  Container(
-                                    //   width: 85,
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      date,
-                                      style: TextStyle(
-                                        color: Colors.black.withOpacity(0.7),
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600,
-                                        fontFamily: 'Urbanist',
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    //width: 85,
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      '$startTime - $endTime',
-                                      style: TextStyle(
-                                        color: Colors.black.withOpacity(0.7),
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600,
-                                        fontFamily: 'Urbanist',
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                            Container(
+                              margin: EdgeInsets.symmetric(horizontal: 12),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 10),
+                              decoration: BoxDecoration(
+                                //color: backGroundPink.withOpacity(0.3),
+                                border:
+                                    Border.all(color: backGroundPink, width: 2),
+                                borderRadius: BorderRadius.circular(13),
                               ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              SizedBox(
-                                width: 120,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                              child: Row(children: [
+                                Column(
                                   children: [
-                                    Text(
-                                      title,
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'Urbanist',
+                                    Container(
+                                      //   width: 85,
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        date,
+                                        style: TextStyle(
+                                          color: Colors.black.withOpacity(0.7),
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w600,
+                                          fontFamily: 'Urbanist',
+                                        ),
                                       ),
                                     ),
-                                    Text(
-                                      doctor,
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'Urbanist',
-                                      ),
-                                    ),
-                                    Text(
-                                      hospital,
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'Urbanist',
+                                    Container(
+                                      //width: 85,
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        '$startTime - $endTime',
+                                        style: TextStyle(
+                                          color: Colors.black.withOpacity(0.7),
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w600,
+                                          fontFamily: 'Urbanist',
+                                        ),
                                       ),
                                     ),
                                   ],
                                 ),
-                              ),
-                            ]),
-                          ),
-                        ],
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                SizedBox(
+                                  width: 120,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        title,
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'Urbanist',
+                                        ),
+                                      ),
+                                      Text(
+                                        doctor,
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'Urbanist',
+                                        ),
+                                      ),
+                                      Text(
+                                        hospital,
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'Urbanist',
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ]),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              );
+                  ],
+                );
+              } else {
+                return SizedBox(height: 50);
+              }
             },
           ),
         ),
@@ -257,48 +263,53 @@ class _appointmentHistory extends State<appointmentHistory> {
                   height: 10,
                 ),
                 Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 18.0,
-                      vertical: 0.0,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(45.0),
                     ),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(45.0),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 18.0,
+                        vertical: 0.0,
                       ),
-                    ),
-                    child: SingleChildScrollView(
-                      //padding: EdgeInsets.only(top: 0),
-                      child: Container(
-                        child: Column(
-                          children: [
-                            FutureBuilder<Widget>(
-                              future: getAppointments(pregnancyInfoId),
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<Widget> snapshot) {
-                                if (snapshot.connectionState ==
-                                    ConnectionState.waiting) {
-                                  return Container(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 100, vertical: 250),
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: CircularProgressIndicator(
-                                        color: pinkColor,
-                                        strokeWidth: 3,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(45.0),
+                        ),
+                      ),
+                      child: SingleChildScrollView(
+                        //padding: EdgeInsets.only(top: 0),
+                        child: Container(
+                          child: Column(
+                            children: [
+                              FutureBuilder<Widget>(
+                                future: getAppointments(pregnancyInfoId),
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<Widget> snapshot) {
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return Container(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 100, vertical: 250),
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: CircularProgressIndicator(
+                                          color: pinkColor,
+                                          strokeWidth: 3,
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                } else if (snapshot.hasError) {
-                                  return Text('Error: ${snapshot.error}');
-                                } else {
-                                  return snapshot.data ??
-                                      Container(); // Return an empty container if data is null
-                                }
-                              },
-                            ),
-                          ],
+                                    );
+                                  } else if (snapshot.hasError) {
+                                    return Text('Error: ${snapshot.error}');
+                                  } else {
+                                    return snapshot.data ??
+                                        Container(); // Return an empty container if data is null
+                                  }
+                                },
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
