@@ -1,10 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_print, camel_case_types
 
 import 'package:flutter/material.dart';
-import 'package:preggo/NavBar.dart';
-import 'package:preggo/viewAppointment.dart';
-import 'package:preggo/view_reminders.dart';
-import 'package:preggo/weightFeature/view_delete_Weight.dart';
 import 'package:preggo/weight_history.dart';
 
 import 'appointmentHistory.dart';
