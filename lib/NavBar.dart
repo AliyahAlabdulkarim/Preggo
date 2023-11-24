@@ -122,7 +122,7 @@ class _NavBar extends State<NavBar> {
                     minWidth: 40,
                     onPressed: () {
                       setState(() {
-                        currentScreen = const deleteAppt();
+                        currentScreen = const CommunityPage();
                         currentTab = 1;
                       });
                     },
