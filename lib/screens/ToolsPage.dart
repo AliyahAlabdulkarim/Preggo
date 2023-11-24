@@ -3,10 +3,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:preggo/NavBar.dart';
 import 'package:preggo/colors.dart';
 import 'package:preggo/viewAppointment.dart';
 import 'package:preggo/view_reminders.dart';
 import 'package:preggo/weightFeature/view_delete_Weight.dart';
+import 'package:blur/blur.dart';
 
 class ToolsPage extends StatefulWidget {
   const ToolsPage({super.key});
@@ -44,8 +46,68 @@ class _ToolsPage extends State<ToolsPage> {
               if (snapshot.data == false) {
                 return Tools(context);
               } else {
-                return Container(
-                  child: Text('not pregnant!'),
+                return Stack(
+                  children: [
+                    Blur(child: Tools(context)),
+                    Center(
+                      child: AlertDialog(
+                        titlePadding: EdgeInsets.all(0),
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                        title: Container(
+                          height: 45,
+                          color: backGroundPink,
+                          child: Center(
+                            child: Text(
+                              'Not Available',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                        content: SizedBox(
+                          height: 110,
+                          child: Column(
+                            children: [
+                              Text(
+                                  'You cannot access these features without a pregnancy journey',
+                                  textAlign: TextAlign.center),
+                              SizedBox(height: 20),
+                              Container(
+                                padding: EdgeInsets.symmetric(horizontal: 5),
+                                height: 45.0,
+                                child: Center(
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => NavBar(),
+                                        ),
+                                      );
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: blackColor,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(40)),
+                                      padding: const EdgeInsets.only(
+                                          left: 37,
+                                          top: 15,
+                                          right: 37,
+                                          bottom: 15),
+                                    ),
+                                    child: const Text(
+                                      "Go Back",
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 );
               }
             }
