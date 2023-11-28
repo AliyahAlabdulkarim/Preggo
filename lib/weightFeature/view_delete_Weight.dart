@@ -432,6 +432,7 @@ class _view_delete_Weight extends State<view_delete_Weight> {
                             child: Text(
                               "edit |",
                               style: TextStyle(
+                                decoration: TextDecoration.underline,
                                 color: Colors.black,
                                 fontSize: 15.5,
                                 fontWeight: FontWeight.w600,
@@ -458,6 +459,7 @@ class _view_delete_Weight extends State<view_delete_Weight> {
                             child: Text(
                               " delete",
                               style: TextStyle(
+                                decoration: TextDecoration.underline,
                                 color: Colors.redAccent,
                                 fontSize: 15.5,
                                 fontWeight: FontWeight.w600,
