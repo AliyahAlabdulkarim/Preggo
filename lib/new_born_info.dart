@@ -632,7 +632,7 @@ class NewBornInfoState extends State<NewBornInfo> {
         body: SafeArea(
           child: Column(
             children: [
-              Align(
+              /* Align(
                 alignment: Alignment.bottomLeft,
                 child: SizedBox(
                   height: 25,
@@ -645,7 +645,7 @@ class NewBornInfoState extends State<NewBornInfo> {
                     ),
                   ),
                 ),
-              ),
+              ),*/
               const Text(
                 "Newborn Information",
                 style: TextStyle(
@@ -653,7 +653,7 @@ class NewBornInfoState extends State<NewBornInfo> {
                   fontSize: 30,
                   fontFamily: 'Urbanist',
                   fontWeight: FontWeight.w600,
-                  height: 0.4,
+                  height: 1.45,
                   letterSpacing: -0.28,
                 ),
               ),

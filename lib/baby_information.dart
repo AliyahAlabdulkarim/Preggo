@@ -300,6 +300,20 @@ class _babyInformation extends State<BabyInformation> {
           imagePath = 'assets/images/unknownBaby.png';
         }
 
+        String finalWeight = '';
+        if (weight == "") {
+          finalWeight = weight;
+        } else {
+          finalWeight = '$weight kg';
+        }
+
+        String finalHeight = '';
+        if (height == "") {
+          finalHeight = height;
+        } else {
+          finalHeight = '$height kg';
+        }
+
         return Container(
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
           child: Column(
@@ -569,7 +583,7 @@ class _babyInformation extends State<BabyInformation> {
                     ),
                   ),
                   Text(
-                    '$height cm',
+                    finalHeight,
                     style: TextStyle(
                       color: pinkColor,
                       fontSize: 21,
@@ -609,7 +623,7 @@ class _babyInformation extends State<BabyInformation> {
                     ),
                   ),
                   Text(
-                    '$weight kg',
+                    finalWeight,
                     style: TextStyle(
                       color: pinkColor,
                       fontSize: 21,
