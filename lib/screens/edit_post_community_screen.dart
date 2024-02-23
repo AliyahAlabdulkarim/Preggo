@@ -26,27 +26,35 @@ extension CapitalizeAfterDigit on String {
   }
 }
 
-class PostCommunityScreen extends StatefulWidget {
-  const PostCommunityScreen({super.key});
+class EditPostCommunityScreen extends StatefulWidget {
+  const EditPostCommunityScreen({
+    super.key,
+    required this.postId,
+    required this.postTitle,
+    required this.postDescription,
+  });
+  final String postId;
+  final String postTitle;
+  final String postDescription;
 
   @override
   State<StatefulWidget> createState() {
-    return PostCommunityScreenState();
+    return EditPostCommunityScreenState();
   }
 }
 
-class PostCommunityScreenState extends State<PostCommunityScreen> {
+class EditPostCommunityScreenState extends State<EditPostCommunityScreen> {
   var errorMessage = "";
   bool isLoading = false;
 
-  Future<void> addNewPost() async {
+  Future<void> updateMyPost() async {
     try {
       final userUid = FirebaseAuth.instance.currentUser?.uid;
       if (userUid != null && _formKey.currentState!.validate()) {
         final prefs = await SharedPreferences.getInstance();
         final username = prefs.getString("username")?.capitalizeAnyWord;
         final date = DateTime.now();
-        final String formatedDate =
+        final String updatedDate =
             DateFormat("yyyy/MM/dd hh:mm a").format(date);
         int comments = 0;
 
@@ -57,22 +65,17 @@ class PostCommunityScreenState extends State<PostCommunityScreen> {
         final post = {
           "title": _postTitleController.text,
           "body": _postDescriptionController.text,
-          "timestamp": formatedDate,
-          "userID": userUid,
-          "username": username,
-          "comments": comments,
-          "id": "",
+          "timestamp": updatedDate,
         };
         final communityCollection =
             FirebaseFirestore.instance.collection("community");
-        await communityCollection.add(post).then((value) async {
-          await communityCollection.doc(value.id).set(
-            {
-              "id": value.id,
-            },
-            SetOptions(merge: true),
-          );
+        await communityCollection
+            .doc(widget.postId)
+            .set(post, SetOptions(merge: true))
+            .then((value) {
           if (mounted) {
+            /// Refresh my posts
+
             _successDialog();
           }
           setState(() {
@@ -136,7 +139,7 @@ class PostCommunityScreenState extends State<PostCommunityScreen> {
 
                           // Done
                           const Text(
-                            "Post added successfully!",
+                            "Post edited successfully!",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Color.fromARGB(255, 0, 0, 0),
@@ -157,7 +160,14 @@ class PostCommunityScreenState extends State<PostCommunityScreen> {
                             height: 45.0,
                             child: Center(
                               child: ElevatedButton(
-                                onPressed: () {
+                                onPressed: () async {
+                                  FirebaseFirestore firestore =
+                                      FirebaseFirestore.instance;
+                                  final DocumentReference postDocRef = firestore
+                                      .collection('community')
+                                      .doc(widget.postId);
+                                  final DocumentSnapshot postSnapshot =
+                                      await postDocRef.get();
                                   /*Navigator.of(context).push(
                                     MaterialPageRoute(
                                         builder: (context) => ProfileScreen()),
@@ -199,8 +209,9 @@ class PostCommunityScreenState extends State<PostCommunityScreen> {
   @override
   void initState() {
     super.initState();
-    _postTitleController = TextEditingController();
-    _postDescriptionController = TextEditingController();
+    _postTitleController = TextEditingController(text: widget.postTitle);
+    _postDescriptionController =
+        TextEditingController(text: widget.postDescription);
   }
 
   @override
@@ -341,7 +352,7 @@ class PostCommunityScreenState extends State<PostCommunityScreen> {
               ),
             ),
             const Text(
-              "Add a new post",
+              "Edit post",
               style: TextStyle(
                 color: Color(0xFFD77D7C),
                 fontSize: 32,
@@ -574,8 +585,8 @@ class PostCommunityScreenState extends State<PostCommunityScreen> {
                                   width:
                                       MediaQuery.sizeOf(context).width * 0.73,
                                   child: ElevatedButton(
-                                    onPressed: () {
-                                      addNewPost();
+                                    onPressed: () async {
+                                      await updateMyPost();
                                     },
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: blackColor,
@@ -588,37 +599,12 @@ class PostCommunityScreenState extends State<PostCommunityScreen> {
                                       //     right: 85,
                                       //     bottom: 15),
                                     ),
-                                    child: const Text("Add Post",
+                                    child: const Text("Edit Post",
                                         style: TextStyle(
                                           fontFamily: 'Urbanist',
                                         )),
                                   ),
                                 ),
-
-                                /// With MediaQuery width
-                                // SizedBox(
-                                //   height: 45.0,
-                                //   width:
-                                //       MediaQuery.sizeOf(context).width * 0.30,
-                                //   child: ElevatedButton(
-                                //     onPressed: addNewPost,
-                                //     style: ElevatedButton.styleFrom(
-                                //       backgroundColor: blackColor,
-                                //       shape: RoundedRectangleBorder(
-                                //         borderRadius: BorderRadius.circular(40),
-                                //       ),
-                                //       // padding: const EdgeInsets.only(
-                                //       //     left: 85,
-                                //       //     top: 15,
-                                //       //     right: 85,
-                                //       //     bottom: 15),
-                                //     ),
-                                //     child: const Text("Add Post",
-                                //         style: TextStyle(
-                                //           fontFamily: 'Urbanist',
-                                //         )),
-                                //   ),
-                                // )
                               ],
                             ),
                           ),

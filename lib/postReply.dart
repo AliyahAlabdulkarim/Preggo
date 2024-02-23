@@ -8,6 +8,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:math' as math;
 import 'package:preggo/profile/profile_screen.dart';
+import 'package:preggo/screens/edit_post_community_screen.dart';
 
 class postReply extends StatefulWidget {
   @override
@@ -22,6 +23,22 @@ class _postReply extends State<postReply> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final GlobalKey<FormFieldState> _nameKey = GlobalKey<FormFieldState>();
   final TextEditingController _postReplyController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    if (postId.isNotEmpty) {
+      setState(() {
+        fetchPostWidgetView = displayPost(postId);
+      });
+    }
+  }
 
   Future<void> deletePostById({
     required String postId,
@@ -423,6 +440,8 @@ class _postReply extends State<postReply> {
     );
   }
 
+  Future<Widget?>? fetchPostWidgetView;
+
   //DISPLAY THE POST THAT WAS CLICKED ON (PROFILE PIC, USERNAME, TITLE, BODY, TIMESTAMP)
   Future<Widget> displayPost(String postid) async {
     String username = '';
@@ -579,7 +598,37 @@ class _postReply extends State<postReply> {
 
                   /// Delete Post icon - show it if the current user logged in and the post it is post owner
                   if (showDeleteButton) ...[
-                    TextButton.icon(
+                    IconButton(
+                      splashRadius: 14,
+                      onPressed: () async {
+                        await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return EditPostCommunityScreen(
+                                postTitle: title,
+                                postDescription: body,
+                                postId: postId,
+                              );
+                            },
+                          ),
+                        ).then(
+                          (value) {
+                            setState(() {});
+                          },
+                        );
+                      },
+                      icon: Icon(
+                        Icons.edit,
+                        size: 14.5,
+                        color: Colors.red,
+                      ),
+                      style: TextButton.styleFrom(
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
+                    ),
+                    IconButton(
+                      splashRadius: 14,
                       onPressed: () async {
                         final String? postId = ModalRoute.of(context)
                             ?.settings
@@ -597,15 +646,6 @@ class _postReply extends State<postReply> {
                       ),
                       style: TextButton.styleFrom(
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      ),
-                      label: Text(
-                        "Delete post",
-                        style: TextStyle(
-                          color: Colors.red,
-                          fontSize: 14.5,
-                          fontFamily: 'Urbanist',
-                          fontWeight: FontWeight.w600,
-                        ),
                       ),
                     ),
                   ],
@@ -866,11 +906,10 @@ class _postReply extends State<postReply> {
         children: [
           Column(
             children: [
-              FutureBuilder<Widget>(
+              FutureBuilder<Widget?>(
                 future: displayPost(postId),
-                builder:
-                    (BuildContext context, AsyncSnapshot<Widget> snapshot) {
-                  if (snapshot.hasData) {
+                builder: (context, snapshot) {
+                  if (snapshot.hasData && snapshot.data != null) {
                     return snapshot.data!;
                   }
 
