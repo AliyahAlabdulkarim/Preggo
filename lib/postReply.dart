@@ -599,6 +599,10 @@ class _postReply extends State<postReply> {
                   /// Delete Post icon - show it if the current user logged in and the post it is post owner
                   if (showDeleteButton) ...[
                     IconButton(
+                      constraints: BoxConstraints(
+                        maxWidth: 20,
+                        // maxHeight: 20,
+                      ),
                       splashRadius: 14,
                       onPressed: () async {
                         await Navigator.push(
@@ -621,7 +625,7 @@ class _postReply extends State<postReply> {
                       icon: Icon(
                         Icons.edit,
                         size: 14.5,
-                        color: Colors.red,
+                        color: Color.fromARGB(255, 79, 79, 81),
                       ),
                       style: TextButton.styleFrom(
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
