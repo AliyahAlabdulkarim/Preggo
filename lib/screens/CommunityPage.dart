@@ -2,13 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
-import 'package:preggo/profile/profile_screen.dart';
 import '../colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
 import '../postReply.dart';
 import 'post_community.dart';
+import 'package:preggo/screens/profile_screen.dart';
 
 class CommunityPage extends StatefulWidget {
   const CommunityPage({super.key});

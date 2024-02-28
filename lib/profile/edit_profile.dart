@@ -14,7 +14,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:googleapis/calendar/v3.dart' as Cal;
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:preggo/profile/cubit/profile_cubit.dart';
-import 'package:preggo/profile/profile_screen.dart';
+import 'package:preggo/screens/profile_screen.dart';
 import 'package:string_validator/string_validator.dart';
 
 class EditProfileScreen extends StatefulWidget {

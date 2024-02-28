@@ -1,5 +1,5 @@
 import 'package:preggo/deleteApptsEndJourney.dart';
-import 'package:preggo/profile/profile_screen.dart';
+import 'package:preggo/screens/profile_screen.dart';
 import 'package:preggo/screens/PregnancyTracking.dart';
 import 'package:preggo/screens/CommunityPage.dart';
 

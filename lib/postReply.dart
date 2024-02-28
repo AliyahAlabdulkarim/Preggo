@@ -7,7 +7,7 @@ import 'package:preggo/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:math' as math;
-import 'package:preggo/profile/profile_screen.dart';
+import 'package:preggo/screens/profile_screen.dart';
 import 'package:preggo/screens/edit_post_community_screen.dart';
 
 class postReply extends StatefulWidget {
