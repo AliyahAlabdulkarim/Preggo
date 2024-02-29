@@ -284,7 +284,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           settings: RouteSettings(
                                               arguments: pregnancyInfoModel![index].id),
                                         ),
-                                      );
+                                      ).then((value) =>  setState(() {
+                                        getUserData();
+                                      }));
                                     }
                                   },
                                   child: Padding(
@@ -591,7 +593,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
           .collection('users')
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .get();
-      user = UserModel.fromJson(response.data()!);
+      // setState(() {
+        user = UserModel.fromJson(response.data()!);
+      // });
       var response3 = await FirebaseFirestore.instance
           .collection('users')
           .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -599,8 +603,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
           .get();
       pregnancyInfoModel = [];
       for (var element in response3.docs) {
-        pregnancyInfoModel!
-            .add(PregnancyInfoModel.fromJson(element.data(), element.id));
+        // setState(() {
+          pregnancyInfoModel!
+              .add(PregnancyInfoModel.fromJson(element.data(), element.id));
+        // });
+
       }
       return pregnancyInfoModel;
     } catch (e) {
