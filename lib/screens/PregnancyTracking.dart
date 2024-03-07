@@ -265,7 +265,7 @@ class _PregnancyTracking extends State<PregnancyTracking> {
                                                                           () async {
                                                                         Navigator.of(context)
                                                                             .pop();
-                                                                        await end();
+                                                                        await endPregnancyJourney();
                                                                       },
                                                                       style: ElevatedButton
                                                                           .styleFrom(
@@ -636,7 +636,7 @@ class _PregnancyTracking extends State<PregnancyTracking> {
       DateTime today = DateTime.now();
       int weeksPregnant = 40 - (date.difference(today).inDays) ~/ 7;
       currentWeekPregnant = weeksPregnant.toString();
-      if (currentWeekProgress > 308) await end();
+      if (currentWeekProgress > 308) await endPregnancyJourney();
       setState(() {});
     });
   }
@@ -669,7 +669,7 @@ class _PregnancyTracking extends State<PregnancyTracking> {
   }
 
   String? babyId;
-  Future end() async {
+  Future endPregnancyJourney() async {
     await FirebaseFirestore.instance
         .collection("users")
         .doc(FirebaseAuth.instance.currentUser!.uid)
