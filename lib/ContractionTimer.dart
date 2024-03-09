@@ -28,8 +28,7 @@ class _ContractionT extends State<ContractionT> {
   //String endTime = "";
 
   String getTime() {
-    DateTime stamp = DateTime.now();
-    String formattedStamp = DateFormat.jm().format(stamp);
+    String formattedStamp = DateFormat.jm().format(DateTime.now());
     return formattedStamp;
   }
 
