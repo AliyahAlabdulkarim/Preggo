@@ -416,7 +416,8 @@ class _PregnancyTracking extends State<PregnancyTracking> {
                                       children: [
                                         Icon(
                                           Icons.straighten,
-                                          color:  Color.fromARGB(255, 163, 39, 39),
+                                          color:
+                                              Color.fromARGB(255, 163, 39, 39),
                                         ),
                                         Text(
                                           allWeeks[selected][0],
@@ -644,7 +645,7 @@ class _PregnancyTracking extends State<PregnancyTracking> {
   final GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: _scopes,
   );
-  deleteAllAppts() async {
+  deleteAllAppointments() async {
     String? id = '';
     await _googleSignIn.signInSilently();
     final auth.AuthClient? client = await _googleSignIn.authenticatedClient();
@@ -669,40 +670,14 @@ class _PregnancyTracking extends State<PregnancyTracking> {
   }
 
   String? babyId;
+
   Future endPregnancyJourney() async {
-    await FirebaseFirestore.instance
-        .collection("users")
-        .doc(FirebaseAuth.instance.currentUser!.uid)
-        .collection("pregnancyInfo")
-        .get()
-        .then((value) async {
-      for (var element in value.docs) {
-        if (element.data()["ended"] == "false") {
-          babyId = element.id;
-          print("##################################################$babyId");
-          await FirebaseFirestore.instance
-              .collection("users")
-              .doc(FirebaseAuth.instance.currentUser!.uid)
-              .collection("pregnancyInfo")
-              .doc(element.id)
-              .update({"ended": "true"});
-        }
-      }
-      setState(() {});
-    });
-    final userDocRef = FirebaseFirestore.instance
-        .collection('users')
-        .doc(FirebaseAuth.instance.currentUser!.uid);
-    CollectionReference subCollectionRefReminder =
-        userDocRef.collection('reminders');
-    QuerySnapshot subCollectionQueryReminder =
-        await subCollectionRefReminder.get();
-    for (QueryDocumentSnapshot doc in subCollectionQueryReminder.docs) {
-      DocumentReference docRefReminder = subCollectionRefReminder.doc(doc.id);
-      await docRefReminder.delete();
-    }
-    deleteAllAppts();
-    // ignore: use_build_context_synchronously
+    deleteAllReminders();
+    deleteAllAppointments();
+    showEndJourneyPopup();
+  }
+
+  showEndJourneyPopup() {
     showDialog(
       barrierDismissible: false,
       context: context,
@@ -895,5 +870,39 @@ class _PregnancyTracking extends State<PregnancyTracking> {
         ],
       ),
     );
+  }
+
+  deleteAllReminders() async {
+    await FirebaseFirestore.instance
+        .collection("users")
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection("pregnancyInfo")
+        .get()
+        .then((value) async {
+      for (var element in value.docs) {
+        if (element.data()["ended"] == "false") {
+          babyId = element.id;
+          print("##################################################$babyId");
+          await FirebaseFirestore.instance
+              .collection("users")
+              .doc(FirebaseAuth.instance.currentUser!.uid)
+              .collection("pregnancyInfo")
+              .doc(element.id)
+              .update({"ended": "true"});
+        }
+      }
+      setState(() {});
+    });
+    final userDocRef = FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid);
+    CollectionReference subCollectionRefReminder =
+        userDocRef.collection('reminders');
+    QuerySnapshot subCollectionQueryReminder =
+        await subCollectionRefReminder.get();
+    for (QueryDocumentSnapshot doc in subCollectionQueryReminder.docs) {
+      DocumentReference docRefReminder = subCollectionRefReminder.doc(doc.id);
+      await docRefReminder.delete();
+    }
   }
 }
