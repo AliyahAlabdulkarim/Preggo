@@ -78,18 +78,6 @@ class _SignUpState extends State<SignUp> {
       return query.docs.isNotEmpty;
     }
 
-    bool hasSpecial(x) {
-      RegExp _regExp = RegExp(r'^[0-9]');
-      print(x.value);
-      //print(x.value.nsn);
-      if (!_regExp.hasMatch(x.value.nsn.toString())) {
-        print("invalid");
-        return true;
-      }
-      print('valid');
-      return false;
-    }
-
     String phoneNo = '';
     return Scaffold(
       resizeToAvoidBottomInset: false,
