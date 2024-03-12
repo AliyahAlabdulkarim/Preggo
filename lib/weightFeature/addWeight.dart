@@ -109,27 +109,7 @@ class _fillWeightForm extends State<addWeight> {
     }
   }
 
-  // void _showWeightPicker(BuildContext context) {
-  //   showCupertinoModalPopup(
-  //       context: context,
-  //       builder: (_) => SizedBox(
-  //             width: 300,
-  //             height: 250,
-  //             child: CupertinoPicker(
-  //               backgroundColor: Colors.white,
-  //               itemExtent: 40,
-  //               scrollController: FixedExtentScrollController(initialItem: 0),
-  //               children: [
-  //                 for (int i = 25; i <= 250; i++) Text('$i'),
-  //               ],
-  //               onSelectedItemChanged: (value) {
-  //                 setState(() {
-  //                   weight = value.toDouble() + 25;
-  //                 });
-  //               },
-  //             ),
-  //           ));
-  // }
+
 
   void backButton() {
     showDialog(
