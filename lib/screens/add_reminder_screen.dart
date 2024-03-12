@@ -533,13 +533,6 @@ class AddReminderScreenState extends State<AddReminderScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var textStyle = Theme.of(context).textTheme.bodyMedium?.copyWith(
-          fontSize: 12.0,
-          //fontFamily: 'Urbanist',
-          color: Theme.of(context).colorScheme.error,
-          fontWeight: FontWeight.normal,
-        );
-
     var textStyleError = Theme.of(context).textTheme.bodyMedium?.copyWith(
           fontSize: 12.0,
           color: Theme.of(context).colorScheme.error,
