@@ -39,7 +39,7 @@ class _PregnancyTracking extends State<PregnancyTracking> {
   String babyWeight = ' ';
   String babyPicture = 'assets/images/w01-02.jpg';
   int weekNo = 0;
-  var duedate;
+  var expectedBirthDate;
 
   toJson(DocumentSnapshot doc) {
     return {
@@ -72,8 +72,8 @@ class _PregnancyTracking extends State<PregnancyTracking> {
     if (subCollectionRef.docs.isNotEmpty) {
       //SHE IS CURRENTLY PREGNANT
       var data = subCollectionRef.docs.first.data() as Map;
-      duedate = data['DueDate'];
-      var cWeek = getCurrentWeek(duedate.toDate());
+      expectedBirthDate = data['DueDate'];
+      var cWeek = getCurrentWeek(expectedBirthDate.toDate());
       print("scrolling to " + (cWeek - 1).toString());
       return cWeek;
     } else {
