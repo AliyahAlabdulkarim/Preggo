@@ -67,8 +67,6 @@ class _babyInformationEndJourney extends State<BabyInformationEndJourney> {
         .doc(pregnancyId)
         .get();
 
-    print('-------------------------$ended----------------------');
-
     //PREGNANCY NOT ENDED -> GET BABY INFO
     if (ended == "false") {
       if (babyInfo.exists) {

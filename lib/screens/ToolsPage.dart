@@ -3,7 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:preggo/ContractionT.dart';
+import 'package:preggo/ContractionTimer.dart';
 import 'package:preggo/NavBar.dart';
 import 'package:preggo/colors.dart';
 import 'package:preggo/viewAppointment.dart';
